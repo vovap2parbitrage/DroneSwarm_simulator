@@ -8,13 +8,3 @@ void ScoutDrone::update() {
 
     std::cout << "[Scout] Moving to (" << x << ","  << y << ")" << " - Battery level: [" << batteryLevel << "]%\n";
 }
-
-int main(){
-    ScoutDrone b1(10 , 10);
-
-    b1.update();
-    b1.update();
-    b1.update();
-
-    return 0;
-}
