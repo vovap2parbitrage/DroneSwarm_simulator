@@ -2,28 +2,29 @@
 #include <vector>
 #include "ScoutDrone.h"
 #include "AttackDrone.h"
+#include "DefenderDrone.h"
 
-int main() {
+int main(){
     std::vector<Drone*> swarm;
+
+    std::cout << "=====SIMULATION STARTED=====\n";
 
     swarm.push_back(new ScoutDrone(0 , 0));
     swarm.push_back(new AttackDrone(0 , 5));
-    swarm.push_back(new ScoutDrone(10 , 10));
-    
-    std::cout << "======START OF SIMULATION=====\n";
+    swarm.push_back(new ScoutDrone(5 , 5));
+    swarm.push_back(new DefenderDrone(0 , 0));
 
-    for(int frame = 1; frame <= 5 ; ++frame) {
+    for(int frame = 1 ; frame <= 5 ; ++frame){
+        std::cout << "Frame " << frame << ":\n";
 
-        std::cout << "Frame: " << frame << "\n";
-
-        for(Drone* d : swarm) {
+        for(Drone* d : swarm){
             d->update();
         }
 
         std::cout << "\n";
     }
-    
-    for(Drone* d :swarm) {
+
+    for(Drone* d : swarm){
         delete d;
     }
 
