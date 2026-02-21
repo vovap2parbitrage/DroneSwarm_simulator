@@ -2,9 +2,8 @@
 #include "AttackDrone.h"
 
 void AttackDrone::update() {
-    x += 2;
-    y += 2;
-    batteryLevel -= 5;
+    droneGPS.move(5 , 1);
+    droneBattery.discharge(5 , 1);
 
-    std::cout << "[Attacker] Moving to (" << x << " , "<< y << ") - Battery Level:[" << batteryLevel << "]%\n";
+    std::cout << "[Attacker] Moving to (" << droneGPS.getX() << " , " << droneGPS.getY() << ") - Battery Level:[" << droneBattery.getBatteryLevel() << "]%\n";
 }

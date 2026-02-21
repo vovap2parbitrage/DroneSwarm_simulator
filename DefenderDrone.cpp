@@ -2,8 +2,8 @@
 #include <iostream>
 
 void DefenderDrone::update() {
-    x++;
-    y += 3;
-    batteryLevel -= 4;
-    std::cout << "[Defender] Moving to (" << x << " , " << y << ") - Battery level: [" << batteryLevel << "]%\n";
+    droneGPS.move(2 , 2);
+    droneBattery.discharge(2 , 2);
+
+    std::cout << "[Defender] Moving to (" << droneGPS.getX() << " , " << droneGPS.getY() << ") - Battery level: [" << droneBattery.getBatteryLevel() << "]%\n";
 }

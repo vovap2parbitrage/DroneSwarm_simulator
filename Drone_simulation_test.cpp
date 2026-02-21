@@ -1,34 +1,41 @@
 #include <iostream>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 #include "ScoutDrone.h"
 #include "AttackDrone.h"
 #include "DefenderDrone.h"
+#include "Swarm_manager.h" 
 
 int main(){
-    std::vector<Drone*> swarm;
+    srand(time(0));
+    Swarm_manager<Drone> manager;
 
-    std::cout << "=====SIMULATION STARTED=====\n";
-
-    swarm.push_back(new ScoutDrone(0 , 0));
-    swarm.push_back(new AttackDrone(0 , 5));
-    swarm.push_back(new ScoutDrone(5 , 5));
-    swarm.push_back(new DefenderDrone(0 , 0));
-
-    for(int frame = 1 ; frame <= 5 ; ++frame){
-        std::cout << "Frame " << frame << ":\n";
-
-        for(Drone* d : swarm){
-            d->update();
+    class {
+    public:
+    void draining(std::vector<Drone*> v) {
+        for(Drone* d : v) {
+            if(rand()%2 == 1){
+                double power = rand()%5;
+                d->drain(power);
+            }
         }
+    }
+    } wind;
+
+    std::cout << "=====SIMULATION STARTED=====\n\n";
+
+    manager.addDrone(new AttackDrone (0 , 0));
+    manager.addDrone(new ScoutDrone (0 , 0));
+    manager.addDrone(new DefenderDrone (0 , 0));
+
+    for(int i = 1 ; i <= 5 ; ++i) {
+        std::cout << "Frame " << i << ":\n";
+        manager.executeFrame();
+        wind.draining(manager.getSwarm());
 
         std::cout << "\n";
     }
-
-    for(Drone* d : swarm){
-        delete d;
-    }
-
-    swarm.clear();
 
     std::cout << "=====SIMULATION ENDED=====\n";
 
