@@ -1,30 +1,26 @@
 #pragma once
 #include <vector>
+#include <memory>
 
 template <typename T>
 class Swarm_manager {
     private:
-    std::vector<T*> swarm;
+    std::vector<std::unique_ptr<T>> swarm;
 
     public:
     Swarm_manager() {}
 
-    std::vector<T*> getSwarm() {return swarm; }
+    const std::vector<std::unique_ptr<T>>& getSwarm() const {return swarm; }
 
-    void addDrone(T* drone) {
-        swarm.push_back(drone);
+    void addDrone(std::unique_ptr<T> drone) {
+        swarm.push_back(std::move(drone));
     }
 
     void executeFrame() {
-        for(T* d : swarm) {
+        for(const auto& d : swarm) {
             d->update();
         }
     }
 
-    ~Swarm_manager() {
-        for(T* d : swarm) {
-            delete d;
-        }
-        swarm.clear();
-    }
+    ~Swarm_manager() = default;
 };
