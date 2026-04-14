@@ -1,6 +1,7 @@
 #pragma once
+#include "Interface_IGPS.h"
 
-class GPS {
+class GPS : public IGPS {
     private:
     int x;
     int y;
@@ -8,8 +9,8 @@ class GPS {
     public:
     GPS(int startX , int startY) : x(startX) , y(startY) {}
 
-    int getX() const {return x; }
-    int getY() const {return y; }
+    int getX() const override;
+    int getY() const override;
 
-    void move(int coorX , int coorY);
+    void move(int coorX , int coorY) override;
 };
