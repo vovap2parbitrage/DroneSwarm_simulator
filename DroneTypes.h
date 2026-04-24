@@ -2,6 +2,6 @@
 
 enum class DroneType {
     Scout,
-    Attack,
+    Attacker,
     Defender
 };

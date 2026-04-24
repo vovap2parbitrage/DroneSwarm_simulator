@@ -1,5 +1,7 @@
 #pragma once
+#include "DI_labels.h"
 #include "Interface_IGPS.h"
+#include "di.hpp"
 
 class GPS : public IGPS {
     private:
@@ -7,10 +9,10 @@ class GPS : public IGPS {
     int y;
         
     public:
-    GPS(int startX , int startY) : x(startX) , y(startY) {}
+    BOOST_DI_INJECT(GPS , (named = start_X) int startX , (named = start_Y) int startY) : x(startX) , y(startY) {}
 
     int getX() const override;
     int getY() const override;
 
-    void move(int coorX , int coorY) override;
+    void move(Direction direction) override;
 };

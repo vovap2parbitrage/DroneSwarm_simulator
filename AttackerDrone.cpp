@@ -1,7 +1,8 @@
 #include <iostream>
-#include "ScoutDrone.h"
+#include "Direction.h"
+#include "AttackerDrone.h"
 
-void ScoutDrone::update() {
+void AttackerDrone::update() {
     if(targetX == droneGPS->getX() and targetY == droneGPS->getY()) return;
     Direction direction = Direction::None;
     if(targetX == droneGPS->getX() and targetY > droneGPS->getY()) direction = Direction::Down; 
@@ -14,9 +15,9 @@ void ScoutDrone::update() {
     droneGPS->move(direction);
     droneBattery->discharge();
 
-    std::cout << "[Scout] Moving to (" << droneGPS->getX() << ","  << droneGPS->getY() << ")" << " - Battery level: [" << droneBattery->getBatteryLevel() << "]%\n";
+    std::cout << "[Attacker] Moving to (" << droneGPS->getX() << " , " << droneGPS->getY() << ") - Battery Level:[" << droneBattery->getBatteryLevel() << "]%\n";
 }
 
-void ScoutDrone::toBreak() {std::cout << "[Scout] was destroyed\n"; isUnbroken = false; }
+void AttackerDrone::toBreak() {std::cout << "[Attacker] was destroyed\n"; isUnbroken = false; }
 
-std::string ScoutDrone::draw() const {return " S "; }
+std::string AttackerDrone::draw() const {return " A "; }

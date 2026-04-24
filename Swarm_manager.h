@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include "Drone.h"
 
 template <typename T>
 class Swarm_manager {
@@ -12,13 +13,13 @@ class Swarm_manager {
 
     const std::vector<std::unique_ptr<T>>& getSwarm() const {return swarm; }
 
-    void addDrone(std::unique_ptr<T> drone) {
-        swarm.push_back(std::move(drone));
+    void addDrone(std::unique_ptr<T> object) {
+        swarm.push_back(std::move(object));
     }
 
     void executeFrame() {
         for(const auto& d : swarm) {
-            d->update();
+            if(d->getStatus()) d->update();
         }
     }
 

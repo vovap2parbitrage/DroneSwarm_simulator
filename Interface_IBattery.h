@@ -5,5 +5,5 @@ class IBattery {
     virtual ~IBattery() = default;
 
     virtual double getBatteryLevel() const = 0;
-    virtual void discharge(int a , int b) = 0;
+    virtual void discharge() = 0;
 };

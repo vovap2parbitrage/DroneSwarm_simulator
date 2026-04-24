@@ -1,4 +1,6 @@
 #pragma once
+#include "di.hpp"
+#include "DI_Labels.h"
 #include "Interface_IBattery.h"
 
 class Battery : public IBattery {
@@ -6,9 +8,8 @@ class Battery : public IBattery {
     double batteryLevel;
 
     public:
-    Battery(double bL) : batteryLevel(bL) {}
+    BOOST_DI_INJECT(Battery , (named = Battery_Start_Level) double bL) : batteryLevel(bL) {}
 
     double getBatteryLevel() const override;
-    
-    void discharge(int a , int b) override;
+    void discharge() override;
 };
