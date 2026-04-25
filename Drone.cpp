@@ -28,3 +28,4 @@ bool Drone::checkDirection(Direction direction) {
 int Drone::get_X() const {return droneGPS->getX(); }
 int Drone::get_Y() const {return droneGPS->getY(); }
 bool Drone::getStatus() const {return isUnbroken; }
+int Drone::getBatteryLevel() const {return droneBattery->getBatteryLevel(); }

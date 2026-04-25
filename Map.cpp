@@ -2,16 +2,17 @@
 #include <iostream>
 
 bool Map::notifyMove(IEntity* sender , int targetX , int targetY) {
-    if(targetX >= grid[0].size() or targetY >= grid.size() or targetX < 0 or targetY < 0) return false;
+    if(targetX < 0 or targetY < 0 or targetX >= grid[0].size() or targetY >= grid.size()) return false;
     if(grid[targetY][targetX] == nullptr) {
+        auto save = grid[sender->get_Y()][sender->get_X()];
         grid[sender->get_Y()][sender->get_X()] = nullptr;
-        grid[targetY][targetX] = sender;
+        grid[targetY][targetX] = save;
         return true;
     } else {
         grid[targetY][targetX]->toBreak();
         grid[sender->get_Y()][sender->get_X()]->toBreak();
-        grid[targetY][targetX] = nullptr;
-        grid[sender->get_Y()][sender->get_X()] = nullptr;
+        if(!grid[targetY][targetX]->getStatus()) grid[targetY][targetX] = nullptr;
+        if(!grid[sender->get_Y()][sender->get_X()]->getStatus()) grid[sender->get_Y()][sender->get_X()] = nullptr;
         return false;
     }
 }

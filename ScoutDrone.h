@@ -8,4 +8,5 @@ class ScoutDrone : public Drone {
     void update() override;
     void toBreak() override;
     std::string draw() const override;
+    std::string serialize() override;
 };

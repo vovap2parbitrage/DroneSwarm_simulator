@@ -3,6 +3,7 @@
 #include "AttackerDrone.h"
 
 void AttackerDrone::update() {
+    if(droneBattery->getBatteryLevel() <= 0) return;
     if(targetX == droneGPS->getX() and targetY == droneGPS->getY()) return;
     Direction direction = Direction::None;
     if(targetX == droneGPS->getX() and targetY > droneGPS->getY()) direction = Direction::Down; 
@@ -21,3 +22,5 @@ void AttackerDrone::update() {
 void AttackerDrone::toBreak() {std::cout << "[Attacker] was destroyed\n"; isUnbroken = false; }
 
 std::string AttackerDrone::draw() const {return " A "; }
+
+std::string AttackerDrone::serialize() {return "Attacker " + std::to_string(droneGPS->getX()) + " " + std::to_string(droneGPS->getY()) + " " + std::to_string(droneBattery->getBatteryLevel()) + "\n"; }

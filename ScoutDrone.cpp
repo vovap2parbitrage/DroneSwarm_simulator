@@ -2,6 +2,7 @@
 #include "ScoutDrone.h"
 
 void ScoutDrone::update() {
+    if(droneBattery->getBatteryLevel() <= 0) return;
     if(targetX == droneGPS->getX() and targetY == droneGPS->getY()) return;
     Direction direction = Direction::None;
     if(targetX == droneGPS->getX() and targetY > droneGPS->getY()) direction = Direction::Down; 
@@ -20,3 +21,5 @@ void ScoutDrone::update() {
 void ScoutDrone::toBreak() {std::cout << "[Scout] was destroyed\n"; isUnbroken = false; }
 
 std::string ScoutDrone::draw() const {return " S "; }
+
+std::string ScoutDrone::serialize() {return "Scout " + std::to_string(droneGPS->getX()) + " " + std::to_string(droneGPS->getY()) + " " + std::to_string(droneBattery->getBatteryLevel()) + "\n"; }
