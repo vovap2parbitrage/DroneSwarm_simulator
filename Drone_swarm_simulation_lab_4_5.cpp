@@ -21,7 +21,7 @@
 #include "ArmorDecorator.h"
 #include "FileManager.h"
 
-int main() {
+int game_main() {
     Swarm_manager e_manager;
     auto map = std::make_shared<Map>(10 , 10);
     Render render(map);

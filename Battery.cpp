@@ -3,5 +3,6 @@
 double Battery::getBatteryLevel() const {return batteryLevel; }
 
 void Battery::discharge() {
-    if(batteryLevel > 0) batteryLevel -= 25;
+    batteryLevel -= 25;
+    if(batteryLevel < 0) batteryLevel = 0;
 }
