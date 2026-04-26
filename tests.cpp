@@ -92,7 +92,7 @@ void test_Drone_tryGoingOutOfBounds() {
     std::cout << "[PASS] The mediator blocked the drone from going out of bounds\n";
 }
 
-int main() {
+int main_for_tests() {
     std::cout << "===Running unit tests===\n";
 
     test_Battery_discharge();
