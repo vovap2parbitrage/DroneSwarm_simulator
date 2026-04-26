@@ -98,7 +98,9 @@ int main() {
                 break;
             }
             case 3: {
-                fileM.load();
+                map->clearMap();
+                e_manager.clearSwarm();
+                fileM.load(e_manager , spawner , map);
                 system("cls");
                 break;
             }

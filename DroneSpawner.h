@@ -35,6 +35,20 @@ class DroneSpawner {
         return injector.create<std::unique_ptr<ScoutDrone>>();
     }
 
+    std::unique_ptr<Drone> createScout(int x , int y , double batteryLevel) {
+        auto injector = boost::di::make_injector(
+            boost::di::bind<IGPS>.to<GPS>(),
+            boost::di::bind<IBattery>.to<Battery>(),
+            boost::di::bind<IMediator>.to(*dispatcher),
+
+            boost::di::bind<int>.named(start_X).to(x),
+            boost::di::bind<int>.named(start_Y).to(y),
+            boost::di::bind<double>.named(Battery_Start_Level).to(batteryLevel)
+        );
+
+        return injector.create<std::unique_ptr<ScoutDrone>>();
+    }
+
     std::unique_ptr<Drone> createDefender(int x , int y) {
         auto injector = boost::di::make_injector(
             boost::di::bind<IGPS>.to<GPS>(),
@@ -49,6 +63,20 @@ class DroneSpawner {
         return injector.create<std::unique_ptr<DefenderDrone>>();
     }
 
+    std::unique_ptr<Drone> createDefender(int x , int y , double batteryLevel) {
+        auto injector = boost::di::make_injector(
+            boost::di::bind<IGPS>.to<GPS>(),
+            boost::di::bind<IBattery>.to<Battery>(),
+            boost::di::bind<IMediator>.to(*dispatcher),
+
+            boost::di::bind<int>.named(start_X).to(x),
+            boost::di::bind<int>.named(start_Y).to(y),
+            boost::di::bind<double>.named(Battery_Start_Level).to(batteryLevel)
+        );
+
+        return injector.create<std::unique_ptr<DefenderDrone>>();
+    }
+
     std::unique_ptr<Drone> createAttacker(int x , int y) {
         auto injector = boost::di::make_injector(
             boost::di::bind<IGPS>.to<GPS>(),
@@ -58,6 +86,20 @@ class DroneSpawner {
             boost::di::bind<int>.named(start_X).to(x),
             boost::di::bind<int>.named(start_Y).to(y),
             boost::di::bind<double>.named(Battery_Start_Level).to(attackerCharge)
+        );
+
+        return injector.create<std::unique_ptr<AttackerDrone>>();
+    }
+
+    std::unique_ptr<Drone> createAttacker(int x , int y , double batteryLevel) {
+        auto injector = boost::di::make_injector(
+            boost::di::bind<IGPS>.to<GPS>(),
+            boost::di::bind<IBattery>.to<Battery>(),
+            boost::di::bind<IMediator>.to(*dispatcher),
+
+            boost::di::bind<int>.named(start_X).to(x),
+            boost::di::bind<int>.named(start_Y).to(y),
+            boost::di::bind<double>.named(Battery_Start_Level).to(batteryLevel)
         );
 
         return injector.create<std::unique_ptr<AttackerDrone>>();

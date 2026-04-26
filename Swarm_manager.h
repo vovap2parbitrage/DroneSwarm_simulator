@@ -12,6 +12,8 @@ class Swarm_manager {
 
     const std::vector<std::unique_ptr<IEntity>>& getSwarm() const {return swarm; }
 
+    void clearSwarm() {swarm.clear(); }
+
     void addEntity(std::unique_ptr<IEntity> object) {
         swarm.push_back(std::move(object));
     }

@@ -31,3 +31,13 @@ IEntity* Map::getEntity(int x , int y) const {
 }
 
 const std::vector<std::vector<IEntity*>>& Map::getGrid() const {return grid; }
+
+void Map::clearMap() {
+    int high = grid.size();
+    int width = grid[0].size();
+    for(int i = 0 ; i < high ; i++) {
+        for(int j = 0 ; j < width ; j++) {
+            grid[i][j] = nullptr;
+        }
+    }
+}

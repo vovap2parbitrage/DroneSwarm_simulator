@@ -17,4 +17,5 @@ class Map : public IMediator {
     bool notifyMove(IEntity* sender , int target_X , int target_Y) override;
     void registerEntity(IEntity* sender);
     IEntity* getEntity(int x , int y) const;
+    void clearMap();
 };

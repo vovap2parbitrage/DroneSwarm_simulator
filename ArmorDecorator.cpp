@@ -13,7 +13,7 @@ std::string ArmorDecorator::draw() const {
 void ArmorDecorator::toBreak() {
     if(isUnbroken) {
         isUnbroken = false;
-        std::cout << "Armor was destroyed";
+        std::cout << "[Armor] was destroyed\n";
     }
     else {
         wrapee->toBreak();
@@ -24,4 +24,7 @@ void ArmorDecorator::update() {wrapee->update(); }
 
 bool ArmorDecorator::setTarget(int x , int y) {return wrapee->setTarget(x , y); }
 
-std::string ArmorDecorator::serialize() {return "Armored " + wrapee->serialize(); }
+std::string ArmorDecorator::serialize() {
+    if(isUnbroken) return "Armored " + wrapee->serialize();
+    else {return wrapee->serialize(); }
+}
